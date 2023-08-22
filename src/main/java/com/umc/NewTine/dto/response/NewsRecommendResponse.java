@@ -6,12 +6,12 @@ public class NewsRecommendResponse {
 
     private long id;
     private String title;
-    private long pressId;
+    private String pressName;
 
     public NewsRecommendResponse(News news) {
         this.id = news.getId();
         this.title = news.getTitle();
-        this.pressId = news.getPress().getId();
+        this.pressName = news.getPress().getName();
     }
 
     public long getId() {
@@ -22,7 +22,7 @@ public class NewsRecommendResponse {
         return title;
     }
 
-    public long getPressId() {
-        return pressId;
+    public String getPressName() {
+        return pressName;
     }
 }

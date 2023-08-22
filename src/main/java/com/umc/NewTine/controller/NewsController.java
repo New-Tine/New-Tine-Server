@@ -93,9 +93,9 @@ public class NewsController {
 
 
     @PostMapping("/news") //사용자-뉴스 기록 저장, viewCount 증가
-    public BaseResponse<List<String>> saveRecentViewTime(@RequestBody NewsRecentRequest request) {
+    public BaseResponse<List<String>> saveRecentViewTime(@AuthenticationPrincipal User user,@RequestBody NewsRecentRequest request) {
         try {
-            return new BaseResponse<>(newsService.saveRecentViewTime(request));
+            return new BaseResponse<>(newsService.saveRecentViewTime(user.getId(),request));
         } catch (BaseException e) {
             return new BaseResponse<>(e.getStatus());
         }
@@ -165,6 +165,5 @@ public class NewsController {
         CommentResponseDto likedComment = commentService.likeComment(commentId);
         return ResponseEntity.ok(likedComment);
     }
-
 
 }
